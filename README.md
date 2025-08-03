@@ -1,5 +1,15 @@
 ## Multiple service cloud deployment
-  This repo has multiple parts deployed to different cloud infrastructures or services, requiring accounts and different authentication for each. These each have generous free tiers, or in the case of Databricks, a free trial. However, because they must be set up separately, the process of deployment is separated into multiple parts, which makes it difficult to fully replicate the deployment only from the code. So, I have provided detailed instructions and screenshots for each part in order to show that it works, as well as enable others to follow along if they wish to replicate it.
+  This repo has multiple parts deployed to different cloud infrastructures and services, requiring accounts and different authentication for each. These each have generous free tiers, or in the case of Databricks, a free trial. However, because they must be set up separately, the process of deployment is separated into multiple parts, which makes it unclear how to fully replicate from a single invocation, such as `make all`. So, I have provided detailed instructions and screenshots for each part in order to demonstrate that it works, as well to enable others in following along if they wish to replicate it.
+
+
+## Serverless web service deployment to Modal
+
+Test the API response:
+`curl -X POST -H 'Content-Type: application/json' --data-binary '{"qty": 5}' https://jhuff-genomics--modal-fastapi-endpoint-py-stream-me-dev.modal.run`
+
+OpenAPI (aka Swagger) docs at:
+`https://jhuff-genomics--modal-fastapi-endpoint-py-stream-me-dev.modal.run/docs/`
+
 
 ## Frontend deployment
 
@@ -10,12 +20,12 @@ https://mlops-project-llm-safety.netlify.app/
 
 ## Technologies 
 
-* **Cloud**: AWS + Databricks
-* **Experiment tracking and model registry**: MLflow
-* **Workflow orchestration**: Databricks jobs
+* **Cloud**: AWS + Databricks, Modal.com serverless containers (for `ml-deploy/`)
+* **Experiment tracking and model registry**: Databricks MLflow
+* **Workflow orchestration**: Databricks Jobs
 * **Monitoring**: Pydantic Logfire
 * **CI/CD**: GitHub Actions
-* **Infrastructure as code (IaC)**: Databricks Asset Bundle (for ml-training)
+* **Infrastructure as code (IaC)**: Databricks Asset Bundle (for `ml-train/`)
 * **Best Practices**:
   * uv package management
   * pytest for testing
@@ -37,4 +47,3 @@ https://mlops-project-llm-safety.netlify.app/
    cd ml-deploy
    uv run python3 -m modal setup
    ```
-    
