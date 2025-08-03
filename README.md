@@ -1,3 +1,5 @@
+## Multiple service cloud deployment
+  This repo has multiple parts deployed to different cloud infrastructures or services, requiring accounts and different authentication for each. These each have generous free tiers, or in the case of Databricks, a free trial. However, because they must be set up separately, the process of deployment is separated into multiple parts, which makes it difficult to fully replicate the deployment only from the code. So, I have provided detailed instructions and screenshots for each part in order to show that it works, as well as enable others to follow along if they wish to replicate it.
 
 ## Frontend deployment
 
@@ -13,7 +15,7 @@ https://mlops-project-llm-safety.netlify.app/
 * **Workflow orchestration**: Databricks jobs
 * **Monitoring**: Pydantic Logfire
 * **CI/CD**: GitHub Actions
-* **Infrastructure as code (IaC)**: Terraform and Databricks Asset Bundles
+* **Infrastructure as code (IaC)**: Databricks Asset Bundle (for ml-training)
 * **Best Practices**:
   * uv package management
   * pytest for testing
