@@ -29,3 +29,12 @@ https://mlops-project-llm-safety.netlify.app/
    * Alternatively, Databricks can be used on Azure, GCP or SAP clouds, and on the trial page, the appropriate cloud can be selected at top right
    * Authentication to Databricks is required, and the method assumed in this repo is: [Databricks configuration profiles](https://docs.databricks.com/aws/en/dev-tools/auth/config-profiles)
    * An authentication profile is configured most easily with the Databricks CLI tools: `databricks configure`, CLI installation instructions at [Databricks CLI tutorial](https://docs.databricks.com/aws/en/dev-tools/cli/tutorial)
+
+* **Modal.com**: 
+   * A free tier of Modal.com is available: [Modal.com pricing](https://modal.com/pricing)
+   * Authentication to Modal from a dev computer is easiest from `uv`, which will open a browser to authorize access and set up a token locally:
+   ```
+   cd ml-deploy
+   uv run python3 -m modal setup
+   ```
+    
