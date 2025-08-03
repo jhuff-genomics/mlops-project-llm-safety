@@ -3,7 +3,7 @@ from pydantic import BaseModel
 import time
 
 
-image = image = modal.Image.debian_slim().pip_install("fastapi[standard]")
+image = image = modal.Image.debian_slim().uv_sync()
 app = modal.App(image=image)
 
 
