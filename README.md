@@ -8,7 +8,7 @@ https://mlops-project-llm-safety.netlify.app/
 
 ## Technologies 
 
-* **Cloud**: AWS 
+* **Cloud**: AWS + Databricks
 * **Experiment tracking and model registry**: MLflow
 * **Workflow orchestration**: Databricks jobs
 * **Monitoring**: Pydantic Logfire
@@ -18,3 +18,12 @@ https://mlops-project-llm-safety.netlify.app/
   * uv package management
   * pytest for testing
   * ruff linting and code formatting
+
+
+## Accounts
+
+* **Databricks**: 
+   * A free trial of Databricks on AWS is available: [Databricks free trial](https://docs.databricks.com/aws/en/getting-started/free-trial)
+   * Alternatively, Databricks can be used on Azure, GCP or SAP clouds, and on the trial page, the appropriate cloud can be selected at top right
+   * Authentication to Databricks is required, and the method assumed in this repo is: [Databricks configuration profiles](https://docs.databricks.com/aws/en/dev-tools/auth/config-profiles)
+   * An authentication profile is configured most easily with the Databricks CLI tools: `databricks configure`, CLI installation instructions at [Databricks CLI tutorial](https://docs.databricks.com/aws/en/dev-tools/cli/tutorial)
