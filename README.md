@@ -6,32 +6,43 @@
 
 The `mlflow` server is run locally with a local SQLite backend, defaulting to `http://127.0.0.1:5000`:
 ```
-cd ml-train
-uv run mlflow server --backend-store-uri sqlite:///mydb.sqlite
+$ cd ml-train
+$ uv run mlflow server --backend-store-uri sqlite:///mydb.sqlite
 ```
 
 
 ## Serverless web service deployment to Modal
 
+To create environment secrets `Databricks-MLflow` to securely interact with Databricks and its managed MLflow, run the following using the modified `.env` file:
+```
+$ cd ml-deploy
+$ uv run modal secret create Databricks-MLflow --from-dotenv .env
+```
+
+## Using the API
+
 Test the API response:
-`curl -X POST -H 'Content-Type: application/json' --data-binary '{["qty": 5]}' https://jhuff-genomics--modal-fastapi-endpoint-py-stream-me-dev.modal.run`
+```
+$ curl -X POST -H 'Content-Type: application/json' --data-binary '{["qty": 5]}' https://jhuff-genomics--modal-fastapi-endpoint-py-stream-me-dev.modal.run
+```
 
-OpenAPI (aka Swagger) docs at:
-`https://jhuff-genomics--modal-fastapi-endpoint-py-stream-me-dev.modal.run/docs/`
-
+OpenAPI (aka Swagger) docs for how to use the API are at:
+```
+https://jhuff-genomics--modal-fastapi-endpoint-py-stream-me-dev.modal.run/docs/
+```
 
 ## Technologies 
 
-* **Cloud**: AWS + Databricks, Modal.com serverless containers (for `ml-deploy/`)
+* **Cloud**: AWS + Databricks (for `ml-train/`), Modal.com serverless containers (for `ml-deploy/`)
 * **Experiment tracking and model registry**: Databricks MLflow
 * **Workflow orchestration**: Databricks Jobs
-* **Monitoring**: Pydantic Logfire
+* **Monitoring**: Databricks MLflow Tracing
 * **CI/CD**: GitHub Actions
-* **Infrastructure as code (IaC)**: Databricks Asset Bundle (for `ml-train/`)
+* **Infrastructure as code (IaC)**: Databricks Asset Bundle
 * **Best Practices**:
-  * uv package management
-  * pytest for testing
-  * ruff linting and code formatting
+  * `uv` package management
+  * `ruff` linting and code formatting
+  * `pre-commit` hooks
 
 
 ## Accounts
