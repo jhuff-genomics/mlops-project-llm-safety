@@ -4,11 +4,8 @@
 
 ## Training
 
-The `mlflow` server is run locally with a local SQLite backend, defaulting to `http://127.0.0.1:5000`:
-```
-$ cd ml-train
-$ uv run mlflow server --backend-store-uri sqlite:///mydb.sqlite
-```
+The `mlflow` server is run on Databricks on AWS.
+![mlflow artifacts on Databricks](png/Databricks_mlfow_model_artifacts.png)
 
 
 ## Serverless web service deployment to Modal
@@ -35,10 +32,7 @@ https://jhuff-genomics--modal-fastapi-endpoint-py-stream-me-dev.modal.run/docs/
 
 * **Cloud**: AWS + Databricks (for `ml-train/`), Modal.com serverless containers (for `ml-deploy/`)
 * **Experiment tracking and model registry**: Databricks MLflow
-* **Workflow orchestration**: Databricks Jobs
 * **Monitoring**: Databricks MLflow Tracing
-* **CI/CD**: GitHub Actions
-* **Infrastructure as code (IaC)**: Databricks Asset Bundle
 * **Best Practices**:
   * `uv` package management
   * `ruff` linting and code formatting
