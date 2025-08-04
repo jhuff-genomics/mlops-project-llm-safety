@@ -1,5 +1,5 @@
 ## Multiple service cloud deployment
-  This repo has multiple parts deployed to different cloud infrastructures and services, requiring accounts and different authentication for each. These each have generous free tiers, or in the case of Databricks, a free trial. However, because they must be set up separately, the process of deployment is separated into multiple parts, which makes it unclear how to fully replicate from a single invocation, such as `make all`. So, I have provided detailed instructions and screenshots for each part in order to demonstrate that it works, as well to enable others in following along if they wish to replicate it.
+  This repo has parts deployed to different cloud infrastructures and services, requiring accounts and different authentication for each. These each have generous free tiers, or in the case of Databricks, a free trial. However, because they must be set up separately, the process of deployment is separated into multiple parts, which makes it unclear how to fully replicate from a single invocation, such as `make all`. So, I have a screenshot to demonstrate that it works.
 
 
 ## Training
