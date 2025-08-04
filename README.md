@@ -2,6 +2,15 @@
   This repo has multiple parts deployed to different cloud infrastructures and services, requiring accounts and different authentication for each. These each have generous free tiers, or in the case of Databricks, a free trial. However, because they must be set up separately, the process of deployment is separated into multiple parts, which makes it unclear how to fully replicate from a single invocation, such as `make all`. So, I have provided detailed instructions and screenshots for each part in order to demonstrate that it works, as well to enable others in following along if they wish to replicate it.
 
 
+## Training
+
+The `mlflow` server is run locally with a local SQLite backend, defaulting to `http://127.0.0.1:5000`:
+```
+cd ml-train
+uv run mlflow server --backend-store-uri sqlite:///mydb.sqlite
+```
+
+
 ## Serverless web service deployment to Modal
 
 Test the API response:
