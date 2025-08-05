@@ -1,5 +1,39 @@
-## Multiple service cloud deployment
-  This repo has parts deployed to different cloud infrastructures and services, requiring accounts and different authentication for each. These each have generous free tiers, or in the case of Databricks, a free trial. However, because they must be set up separately, the process of deployment is separated into multiple parts, which makes it unclear how to fully replicate from a single invocation, such as `make all`. So, I have a screenshot to demonstrate that it works.
+# ML for LLM Safety
+
+## Objective and training data
+
+Social narratives are a generally useful approach for teaching social skills, such as patience, empathy and tolerance, to humans with disabilities, including those on the autism spectrum. However, because the LLM input and output often include names, sensitive subjects and incidental disclosure of medical or physical information, there is a higher need for verifying that LLM outputs do not excessivley disclose personal health information or other private information.
+
+The goal of this project is to train a ML judge (using MLOps best practices) of LLM output for social narrative creation. Training data will be simulated LLM output with and without disclosure of unique names or other identifying information and medical or physical information. The final web service API will take input and run the LLM genAI, followed by running the ML judge (registered in MLflow) to assess the safety of the LLM output.
+
+
+## Project Status: Ambitious but unfinished
+
+While significant progress was made in setting up the infrastructure and individual components, the project's ambitious scope proved to be a substantial undertaking, given my time availability. As a result, the simulated ML training data and end-to-end workflow was not fully realized. The existing codebase represents a foundational but incomplete implementation of the original vision. I further employed new cloud and MLOps tools, which required more effort to adapt from the MLOps Zoomcamp course material than I had available.
+
+This README provides details on the implemented components, including how to train the model with tracking on Databricks MLflow and how to deploy the serverless API with Modal. 
+
+
+## Note on multiple service cloud deployment
+
+This repo has parts deployed to different cloud infrastructure, requiring accounts and authentication for each. In the case of Databricks a free trial is available, and for Modal.com a generous free tier for serverless deployments is available. However, it's not easy to fully replicate from only the repo, because the accounts have to be set up separately. So, I have a screenshot from Databricks MLflow to demonstrate it works, and the toy API on Modal is deployed and available.
+
+
+## Accounts
+
+* **Databricks**: 
+   * A free trial of Databricks on AWS is available: [Databricks free trial](https://docs.databricks.com/aws/en/getting-started/free-trial)
+   * Alternatively, Databricks can be used on Azure, GCP or SAP clouds, and on the trial page, the appropriate cloud can be selected at top right
+   * Authentication to Databricks is required, and the method assumed in this repo is: [Databricks configuration profiles](https://docs.databricks.com/aws/en/dev-tools/auth/config-profiles)
+   * An authentication profile is configured most easily with the Databricks CLI tools: `databricks configure`, CLI installation instructions at [Databricks CLI tutorial](https://docs.databricks.com/aws/en/dev-tools/cli/tutorial)
+
+* **Modal.com**: 
+   * A free tier of Modal.com is available: [Modal.com pricing](https://modal.com/pricing)
+   * Authentication to Modal from a dev computer is easiest from `uv`, which will open a browser to authorize access and set up a token locally:
+   ```
+   cd ml-deploy
+   uv run python3 -m modal setup
+   ```
 
 
 ## Train locally with tracking and registry in Databricks MLflow
@@ -48,20 +82,3 @@ OpenAPI (aka Swagger) docs for how to use the API are at:
   * `uv` package management
   * `ruff` linting and code formatting
   * `pre-commit` hooks
-
-
-## Accounts
-
-* **Databricks**: 
-   * A free trial of Databricks on AWS is available: [Databricks free trial](https://docs.databricks.com/aws/en/getting-started/free-trial)
-   * Alternatively, Databricks can be used on Azure, GCP or SAP clouds, and on the trial page, the appropriate cloud can be selected at top right
-   * Authentication to Databricks is required, and the method assumed in this repo is: [Databricks configuration profiles](https://docs.databricks.com/aws/en/dev-tools/auth/config-profiles)
-   * An authentication profile is configured most easily with the Databricks CLI tools: `databricks configure`, CLI installation instructions at [Databricks CLI tutorial](https://docs.databricks.com/aws/en/dev-tools/cli/tutorial)
-
-* **Modal.com**: 
-   * A free tier of Modal.com is available: [Modal.com pricing](https://modal.com/pricing)
-   * Authentication to Modal from a dev computer is easiest from `uv`, which will open a browser to authorize access and set up a token locally:
-   ```
-   cd ml-deploy
-   uv run python3 -m modal setup
-   ```
