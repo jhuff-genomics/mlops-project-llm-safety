@@ -2,7 +2,12 @@
   This repo has parts deployed to different cloud infrastructures and services, requiring accounts and different authentication for each. These each have generous free tiers, or in the case of Databricks, a free trial. However, because they must be set up separately, the process of deployment is separated into multiple parts, which makes it unclear how to fully replicate from a single invocation, such as `make all`. So, I have a screenshot to demonstrate that it works.
 
 
-## Training
+## Train locally with tracking and registry in Databricks MLflow
+
+```
+$ cd ml-train
+$ uv run generate_gemini_social_narratives.py 
+```
 
 The `mlflow` server is run on Databricks on AWS.
 ![mlflow artifacts on Databricks](png/Databricks_mlfow_model_artifacts.png)
@@ -16,17 +21,23 @@ $ cd ml-deploy
 $ uv run modal secret create Databricks-MLflow --from-dotenv .env
 ```
 
+To deploy the app to Modal for live FastAPI, add credentials for Modal and then run:
+```
+$ cd ml-deploy
+$ uv run modal deploy modal_fastapi_endpoint.py --name gemini-llm-safety
+```
+
+
 ## Using the API
 
-Test the API response:
+Test the FastAPI response:
 ```
-$ curl -X POST -H 'Content-Type: application/json' --data-binary '{["qty": 5]}' https://jhuff-genomics--modal-fastapi-endpoint-py-stream-me-dev.modal.run
+$ curl -X POST -H 'Content-Type: application/json' --data-binary '{"qty": 5}' https://jhuff-genomics--gemini-llm-safety-stream-me.modal.run
 ```
 
 OpenAPI (aka Swagger) docs for how to use the API are at:
-```
-https://jhuff-genomics--modal-fastapi-endpoint-py-stream-me-dev.modal.run/docs/
-```
+[https://jhuff-genomics--gemini-llm-safety-stream-me.modal.run/docs/](https://jhuff-genomics--gemini-llm-safety-stream-me.modal.run/docs/)
+
 
 ## Technologies 
 
