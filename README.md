@@ -1,8 +1,8 @@
-# ML for LLM Safety
+# ML for Social Narrative LLM Safety
 
 ## Objective and training data
 
-Social narratives are a generally useful approach for teaching social skills, such as patience, empathy and tolerance, to humans with disabilities, including those on the autism spectrum. An affordable and scalable method to generate socail narrives is to use LLMs, however the input and output often include names, sensitive subjects and incidental disclosure of medical or physical information. So, there is a higher need for verifying that LLM outputs do not excessivley disclose personal health information or other private information.
+Social narratives are a generally useful approach for teaching social skills, such as patience, empathy and tolerance, to humans with disabilities, including those on the autism spectrum. An affordable and scalable method to generate social narratives is to use LLMs, however the input and output often include names, sensitive subjects and incidental disclosure of medical or physical information. So, there is a higher need for verifying that LLM outputs do not excessivley disclose personal health information or other private information.
 
 The goal of this project is to train a ML judge (using MLOps best practices) of LLM output for social narrative creation. Training data will be simulated LLM output with and without disclosure of unique names or other identifying information and medical or physical information. The final web service API will take input and run the LLM genAI, followed by running the ML judge (registered in MLflow) to assess the safety of the LLM output.
 
